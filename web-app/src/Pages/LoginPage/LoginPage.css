@@ -1,0 +1,23 @@
+.Login-container{
+
+    width : 500px;
+ border: 1px solid black;
+ margin : 10px 50%;
+ transform: translate(-50%, 0%);
+
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.items-container{
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+
+.button-container{
+    padding-bottom: 20px;
+}
