@@ -1,12 +1,24 @@
 import React from 'react'
 import { useState } from 'react'
 import './Registration.css'
-function Registration() {
+import { useNavigate } from "react-router-dom";
 
+function Registration() {
+    const navigate = useNavigate();
     const [userData, setUserdata] = useState({})
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(userData);
+        let data = JSON.parse(localStorage.getItem('userData'))
+            if(!data){
+                data = []
+            }
+            data.push({
+                email: userData.email,
+                password: userData.password,
+                products: []
+            })
+        localStorage.setItem('userData', JSON.stringify(data))
+        navigate('/login')
     }
    const handleChange = (e)=>{
        setUserdata (

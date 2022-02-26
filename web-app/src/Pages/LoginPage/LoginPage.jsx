@@ -1,12 +1,20 @@
 import React from 'react'
 import { useState } from 'react'
 import './LoginPage.css'
+import { useNavigate } from "react-router-dom";
 function LoginPage() {
-
+    const navigate = useNavigate();
     const [userData, setUserdata] = useState({})
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(userData);
+        let data = JSON.parse(localStorage.getItem('userData'))
+        let findUser = data.find(user => user.email === userData.email && user.password === userData.password)
+        if(findUser){
+            navigate('/home')
+        }
+        else{
+            alert("Email or password is incorrect. Please try again.")
+        }
     }
    const handleChange = (e)=>{
        setUserdata (
@@ -50,7 +58,7 @@ function LoginPage() {
                     <button >Submit</button>
                     </span>
                     <span>
-                    <button type ="button" >Registration</button>
+                    <button type ="button" onClick={()=>navigate('/')}>Registration</button>
                     </span>
                     
                 </div>
